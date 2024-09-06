@@ -4,11 +4,10 @@ import { View, Text, TextInput, Button, FlatList, Image, StyleSheet, TouchableOp
 export default function App() {
   const [livro, setLivro] = useState('');
   const [filteredResults, setFilteredResults] = useState([]);
-  const [statusFilter, setStatusFilter] = useState('Todos'); // Filtro inicial definido como 'Todos'
+  const [statusFilter, setStatusFilter] = useState('Todos');
   const [allResults, setAllResults] = useState([]);
 
   useEffect(() => {
-    // Atualiza os resultados filtrados sempre que o filtro ou resultados da busca mudam
     setFilteredResults(
       statusFilter === 'Todos'
         ? allResults
@@ -30,10 +29,8 @@ export default function App() {
         status: 'Está lendo' // Default status
       }));
       
-      // Adiciona novos livros ao estado de todos os resultados, preservando o estado existente
       setAllResults(prevResults => [...prevResults, ...resultados]);
-      // Atualiza os resultados filtrados para mostrar todos os resultados após a pesquisa
-      setStatusFilter('Todos'); // Garante que o filtro esteja como 'Todos'
+      setStatusFilter('Todos');
     } catch (error) {
       console.error("Erro ao buscar livros:", error);
     }
@@ -45,7 +42,6 @@ export default function App() {
         book.id === item.id ? { ...book, status: novoStatus } : book
       )
     );
-    // Atualiza a lista filtrada após a mudança de status
     setFilteredResults(prevResults =>
       prevResults.map(book =>
         book.id === item.id ? { ...book, status: novoStatus } : book

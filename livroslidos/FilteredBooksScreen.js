@@ -4,7 +4,7 @@ import { db } from './firebaseConfig';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
 
 export default function FilteredBooksScreen({ route, navigation }) {
-  const { filter } = route.params; // Receber o filtro da navegação
+  const { filter } = route.params;
   const [livros, setLivros] = useState([]);
 
   useEffect(() => {
